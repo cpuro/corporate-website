@@ -1,260 +1,90 @@
-# Corporación Paso a Paso – Sitio Web
+# Corporación Paso a Paso – Cliente (React + Vite)
 
-Sitio web corporativo moderno y optimizado creado con **React**, **Vite** y **Tailwind CSS**. Empacado con **Docker** y servido con **Nginx** para producción de alto rendimiento.
+Aplicación cliente del sitio corporativo desarrollada con `React` y `Vite`, estilizada con `Tailwind CSS` y enrutada con `react-router-dom`. Incluye pruebas con `Jest` y `React Testing Library`.
 
-## 🎯 Características
+## Stack Tecnológico Detectado
+- `React` 19
+- `Vite` 6
+- `Tailwind CSS` 3.4
+- `React Router` 7
+- `react-pdf` 9 + `pdfjs-dist` 4
+- `framer-motion`, `swiper`, `leaflet`/`react-leaflet`
+- Pruebas con `jest` + `@testing-library/*`
+- Linter con `eslint` (configuración moderna)
 
-- ⚡ **Vite + React 19** - Desarrollo rápido con HMR
-- 🎨 **Tailwind CSS** - Diseño responsivo y personalizado
-- 📱 **Diseño Responsivo** - Optimizado para todos los dispositivos
-- 📄 **Visor de PDFs** - Integrado con react-pdf
-- 🐳 **Docker** - Contenedor listo para producción
-- 🔍 **SEO Optimizado** - Meta tags y robots.txt
-- 🚀 **Performance** - Compresión Gzip/Brotli, lazy loading
-- ✅ **Testing** - Jest y React Testing Library
-- 🔒 **Seguridad** - Headers de seguridad, sanitización
-
-## 📋 Requisitos Previos
-
-- **Node.js** 18+ (solo para desarrollo local)
-- **Docker** y **Docker Compose** (para producción)
-- **npm** o **yarn**
-
-## 📁 Estructura del Proyecto
-
+## Estructura del Proyecto (cliente)
 ```
-Corporate-website/
-├── client/                    # Código React
-│   ├── src/
-│   │   ├── components/        # Componentes React reutilizables
-│   │   ├── pages/            # Páginas (Home, About, Services, etc.)
-│   │   ├── services/         # Servicios (logger, sanitizer)
-│   │   ├── hooks/            # Custom hooks
-│   │   ├── utils/            # Utilidades (imageOptimization)
-│   │   ├── assets/           # Imágenes e iconos
-│   │   ├── data/             # Datos estáticos
-│   │   ├── config/           # Configuraciones
-│   │   └── __tests__/        # Tests unitarios
-│   ├── public/               # Archivos estáticos públicos
-│   ├── vite.config.js        # Configuración de Vite
-│   ├── tailwind.config.js    # Configuración de Tailwind
-│   └── package.json
-├── server/                    # Servidor (Express) para APIs
-├── Dockerfile                 # Imagen Docker de producción
-├── nginx.conf               # Configuración de Nginx
-└── docker-compose.yml       # Orquestación de contenedores
+client/
+├── public/
+│   ├── documents/                # PDFs estáticos servidos desde /documents
+│   ├── favicon.ico
+│   └── robots.txt
+├── src/
+│   ├── assets/                   # Imágenes/iconos optimizados (WebP/SVG)
+│   ├── components/               # Componentes UI
+│   ├── config/                   # Constantes y performance
+│   ├── data/                     # Datos estáticos y worker PDF (compatibilidad)
+│   ├── hooks/                    # Hooks personalizados (lazy image, formulario)
+│   ├── pages/                    # Páginas enrutadas
+│   ├── services/                 # Servicios (logger, sanitizador)
+│   ├── __tests__/                # Pruebas unitarias
+│   ├── App.jsx                   # Enrutamiento y lazy loading
+│   ├── main.jsx                  # Punto de entrada
+│   └── index.css                 # Estilos (Tailwind)
+├── __mocks__/                    # Mocks de Jest para archivos/SVG
+├── index.html
+├── vite.config.js                # Configuración de Vite y plugins
+├── tailwind.config.js            # Configuración de Tailwind
+├── postcss.config.js             # PostCSS + Autoprefixer
+├── jest.config.cjs               # Configuración de Jest
+├── jest.setup.cjs                # Entorno de pruebas (env/mocks)
+├── .babelrc                      # Babel para jest (babel-jest)
+├── eslint.config.js              # ESLint
+├── .env.example                  # Variables de entorno de ejemplo
+├── .env.test                     # Variables de entorno para pruebas (opcional)
+├── package.json
+└── (sin servidor Express)        # Uso de `vite preview` o hosting estático
 ```
 
-## 🚀 Inicio Rápido
-
-### Desarrollo Local
-
+## Instalación y Ejecución
 ```bash
-# Ir a la carpeta del cliente
-cd client
-
-# Instalar dependencias
+# 1) Instalar dependencias
 npm install
 
-# Iniciar servidor de desarrollo
+# 2) Desarrollo (HMR)
 npm run dev
+# Abre http://localhost:5173
 
-# La aplicación estará disponible en http://localhost:5173
-```
-
-### Build para Producción
-
-```bash
-# Crear build optimizado
+# 3) Build de producción
 npm run build
 
-# Vista previa del build
+# 4) Vista previa del build
 npm run preview
 ```
 
-## 🐳 Ejecutar con Docker
-
-### Opción 1: Docker Compose (Recomendado)
-
+## Scripts Disponibles
 ```bash
-# Construir imagen
-docker-compose build
-
-# Iniciar contenedor
-docker-compose up -d
-
-# Acceder a http://localhost:8080
+npm run dev          # Servidor de desarrollo (Vite)
+npm run build        # Build de producción
+npm run preview      # Servir build en local
+npm run lint         # Linter (ESLint)
+npm test             # Ejecutar pruebas con Jest
+npm run test:watch   # Pruebas en modo observador
+npm run test:coverage # Reporte de cobertura
 ```
 
-### Opción 2: Docker Manual
+## Variables de Entorno
+- `VITE_GOOGLE_FORM_URL` (URL de envío de formulario)  
+- `VITE_API_BASE_URL` (si aplica, para consumo de APIs)  
+- `VITE_LOG_LEVEL` (nivel de logging)
 
-```bash
-# Construir imagen
-docker build -t corporacion-pasoapaso .
+Si no se establecen, el proyecto usa valores por defecto en `src/config/constants.js`. Documentación adicional pendiente por definir si se amplía el uso de variables.
 
-# Ejecutar contenedor
-docker run -p 8080:80 corporacion-pasoapaso
-```
+## Estado Actual
+En desarrollo. Funcional como MVP del sitio corporativo con navegación, secciones principales y visor de PDFs. Pipeline de despliegue y servidor de producción pendientes por definir.
 
-## ✅ Scripts Disponibles
+## Notas de Arquitectura
+- Servir producción: usar `npm run preview` o un servidor estático (Apache/Nginx, servicios de hosting). No se requiere Express.
+- `index.html` no debe contener referencias a assets con hash generados del build; Vite los gestiona en producción.
 
-### Desarrollo
-
-```bash
-npm run dev          # Iniciar servidor de desarrollo
-npm run build        # Construir para producción
-npm run preview      # Vista previa de build
-npm run lint         # Ejecutar ESLint
-```
-
-### Testing
-
-```bash
-npm test             # Ejecutar tests
-npm run test:watch   # Tests en modo observador
-npm run test:coverage # Cobertura de tests
-```
-
-## 🔧 Configuración de Variables de Entorno
-
-Crea un archivo `.env` en la carpeta `client/` (opcional):
-
-```env
-# API Configuration
-VITE_API_URL=https://api.tudominio.com
-
-# PDF Configuration
-VITE_PDF_MAX_SIZE=10
-
-# Logging
-VITE_LOG_LEVEL=info
-```
-
-## 📦 Dependencias Principales
-
-- **react** (19.1.0) - Librería de UI
-- **react-router-dom** (7.6.0) - Enrutamiento
-- **react-pdf** (9.2.1) - Visor de PDFs
-- **pdfjs-dist** (4.8.69) - Soporte para PDFs
-- **tailwindcss** (3.4) - Estilos
-- **framer-motion** (12.12.1) - Animaciones
-- **leaflet** & **react-leaflet** (5.0.0) - Mapas
-- **react-icons** (5.5.0) - Iconos
-- **swiper** (11.2.6) - Carrusel
-
-## 🔐 Características de Seguridad
-
-- ✅ Sanitización de HTML (DOMPurify)
-- ✅ Headers de seguridad HTTP (X-Frame-Options, CSP, etc.)
-- ✅ Validación de formularios
-- ✅ Protección contra XSS
-
-## 🚀 Deployment en Producción
-
-### En Servidor con Docker
-
-```bash
-# Clonar repositorio
-git clone <tu-repo>
-cd Corporate-website
-
-# Construir y ejecutar
-docker-compose up -d
-
-# Verificar que está corriendo
-docker ps
-```
-
-### En Docker Hub
-
-```bash
-# Construir con tag
-docker build -t tu-usuario/corporacion-pasoapaso:latest .
-
-# Subir a Docker Hub
-docker push tu-usuario/corporacion-pasoapaso:latest
-
-# Ejecutar desde Docker Hub
-docker run -p 8080:80 tu-usuario/corporacion-pasoapaso:latest
-```
-
-### Verificar Build de Producción
-
-```bash
-# Listar assets incluidos
-docker exec <container-id> ls -la /usr/share/nginx/html/assets/
-
-# Verificar que el worker de PDF se incluyó
-docker exec <container-id> ls /usr/share/nginx/html/assets/ | grep pdf.worker
-```
-
-## 📊 Performance & Optimizaciones
-
-- ✅ **Code Splitting** - Carga de componentes bajo demanda
-- ✅ **Lazy Loading** - Imágenes se cargan solo cuando entran en viewport
-- ✅ **Compresión** - Gzip y Brotli habilitados en Nginx
-- ✅ **Caché de Assets** - Hash-based cache busting
-- ✅ **Minimificación** - CSS y JS minimizados
-- ✅ **Optimización de Imágenes** - WebP cuando es soportado
-
-## 🧪 Testing
-
-```bash
-# Ejecutar todos los tests
-npm test
-
-# Tests con cobertura
-npm run test:coverage
-
-# Tests en modo observador
-npm run test:watch
-```
-
-Los tests se encuentran en `src/__tests__/`
-
-## 📚 Documentación Adicional
-
-Ver archivos incluidos en el proyecto:
-
-- `TESTING.md` - Detalles de testing
-- `PERFORMANCE.md` - Análisis de performance
-- `A11Y.md` - Accesibilidad
-- `IMPROVEMENTS_SUMMARY.md` - Mejoras implementadas
-
-## 🐛 Solución de Problemas
-
-### El worker de PDF no se carga
-
-```bash
-# Verificar que el worker esté en los assets
-docker exec <container-id> ls /usr/share/nginx/html/assets/ | grep pdf.worker
-
-# Verificar logs de Nginx
-docker logs <container-id>
-```
-
-### Puerto 8080 ya en uso
-
-```bash
-# Cambiar puerto en docker-compose.yml
-ports:
-  - "8081:80"  # Cambiar a otro puerto
-```
-
-### Reconstruir imagen sin caché
-
-```bash
-docker-compose build --no-cache
-```
-
-## 📝 Licencia
-
-MIT License - Ver LICENSE.md para más detalles
-
-## 👥 Contacto & Soporte
-
-Para reportar problemas o sugerencias, contacta al equipo de desarrollo.
-
----
-
-**Última actualización:** 21 de Noviembre de 2025
+## Ultima modificacion:16 de diciembre de 2025
