@@ -5,9 +5,9 @@ import SectionDivider from '../components/SectionDivider';
 
 const desarrollado = [
   {
-    title: "DOCUMENTOS RTE 2025",
-    subtitle: "Ver documentos pertenecientes al Régimen Especial del año 2025, clic para descargar",
-    pdfUrl: "/zips/Documentos-RTE-2025.zip",
+    title:"DOCUMENTOS RTE 2025",
+    subtitle:"Ver documentos pertenecientes al Régimen Especial del año 2025, clic para descargar",
+    pdfUrl:"/zips/Documentos-RTE-2025.zip",
   },
   {
     title: "DOCUMENTOS RTE 2024",
@@ -43,7 +43,7 @@ const desarrollado = [
   {
     title: "DOCUMENTOS RTE 2018",
     subtitle: "Ver documentos pertenecientes al Régimen Especial del año 2018, clic para descargar",
-    pdfUrl: "/zips/Documentos-RTE-2018.zip",
+    pdfUrl:"/zips/Documentos-RTE-2018.zip",
   },
 ];
 
@@ -60,7 +60,7 @@ const Taxregimen = () => {
       />
       <SectionDivider />
       
-      <ListTaxRegimen title="DOCUMENTOS RTE 2018-2024" items={desarrollado}/>
+      <ListTaxRegimen title="DOCUMENTOS RTE 2018-2025" items={desarrollado}/>
     </main>
   );
 };

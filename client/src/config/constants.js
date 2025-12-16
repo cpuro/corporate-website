@@ -56,7 +56,7 @@ export const NAV_ITEMS = [
 
 // URLs de documentos
 export const DOCUMENT_URLS = {
-  privacyNotice: '/documents/aviso-de-privacidadp-paso-a-paso.pdf',
+  privacyNotice: '/documents/aviso-de-privacidad-paso-a-paso.pdf',  
   privacyPolicy: '/documents/politica-tratamiento-de-datos-paso-a-paso.pdf',
 };
 

@@ -16,19 +16,18 @@ const Contact = () => {
         customImage={contactHeroBgImage}
         isStatic={true}
       />    
-      </Suspense>/
+      </Suspense>
       <SectionDivider />
       
       <Suspense fallback={<div>Cargando sección...</div>}>
       <Form />
-      </Suspense>/
+      </Suspense>
       <SectionDivider />
 
 
       <Suspense fallback={<div>Cargando sección...</div>}>
       <FoundUs showButton={false} />
-      </Suspense>/
-
+      </Suspense>
   
     </main>
   );

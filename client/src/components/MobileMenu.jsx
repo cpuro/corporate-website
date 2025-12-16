@@ -1,42 +1,63 @@
-import { useState, useRef, useEffect } from "react";
-import { Menu, X } from "lucide-react"; // iconos hamburguesa
+import { useState, useRef, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+
+const MENU_ITEMS = ['Inicio', 'Servicios', 'Contacto'];
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef();
+  const containerRef = useRef(null);
 
-  // Cierra el menú si se hace clic fuera
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   return (
-    <div className="relative z-50 lg:hidden">
+    <div ref={containerRef} className="relative z-50 lg:hidden">
       {/* Botón hamburguesa */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
         className="p-2 rounded-md text-blue-700 bg-white shadow-md"
-        aria-label="Toggle menu"
+        aria-label="Abrir menú"
+        aria-expanded={isOpen}
+        aria-controls="mobile-menu"
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {/* Menú desplegable */}
       {isOpen && (
-        <div
-          ref={menuRef}
-          className="absolute top-0 right-0 w-64 h-1/2 300 shadow-lg rounded-bl-lg p-6 space-y-6 animate-fade-in flex flex-col justify-start"
+        <nav
+          id="mobile-menu"
+          role="menu"
+          className="absolute top-full right-0 w-64 shadow-lg rounded-bl-lg p-6 space-y-6
+                     bg-white animate-fade-in"
         >
           <ul className="flex flex-col gap-4 font-semibold">
-            {["Inicio", "Servicios", "Contacto"].map((label, index) => (
-              <li key={index}>
+            {MENU_ITEMS.map((label) => (
+              <li key={label} role="none">
                 <button
+                  role="menuitem"
                   onClick={() => setIsOpen(false)}
                   className="w-full text-left hover:text-orange-500 transition"
                 >
@@ -45,7 +66,7 @@ const MobileMenu = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
       )}
     </div>
   );

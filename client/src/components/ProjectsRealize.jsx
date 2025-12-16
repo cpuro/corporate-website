@@ -100,7 +100,7 @@ export default function ProjectsRealize() {
                 alt={`Proyecto ${idx + 1}`}
                 loading="lazy"
                 decoding="async"
-                fetchpriority="low"
+                fetchPriority="low"
                 width="400"
                 height="300"
                 className="w-full h-auto max-w-md rounded-xl border-4 border-[#3E4095] shadow-2xl"
