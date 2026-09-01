@@ -1,0 +1,150 @@
+# ============================================================================
+#  Corporación Paso a Paso — Apache config for cPanel shared hosting.
+#
+#  Lives in client/public/ so Vite copies it verbatim into dist/ on every
+#  build. Deploy = upload the contents of dist/ to the hosting document root
+#  (public_html). If you deploy into a subdirectory, adjust RewriteBase below.
+#
+#  Ported from the previous nginx.conf (kept in git history, commit 4680a98).
+#  Every block is wrapped in <IfModule>: on shared hosting a directive from a
+#  module that isn't loaded returns HTTP 500 for the whole site.
+# ============================================================================
+
+# ----------------------------------------------------------------------------
+#  MIME types / encodings
+# ----------------------------------------------------------------------------
+<IfModule mod_mime.c>
+    AddType text/javascript   .js .mjs
+    AddType text/css          .css
+    AddType image/svg+xml     .svg
+    AddType image/webp        .webp
+    AddType application/manifest+json .webmanifest
+
+    # Let Apache treat the build's pre-compressed sidecars as an encoding of
+    # the underlying file: serving "app-1a2b3c4d.js.br" then yields
+    # Content-Type: text/javascript + Content-Encoding: br automatically.
+    AddEncoding br   .br
+    AddEncoding gzip .gz
+</IfModule>
+
+# ----------------------------------------------------------------------------
+#  Security headers  (Apache merges Header directives — no per-block
+#  duplication needed, unlike nginx add_header)
+# ----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # HSTS is only honoured over HTTPS. `includeSubDomains` is deliberately
+    # omitted: a browser caches HSTS for a year and it cannot be revoked on
+    # demand, so it would break any subdomain still served over HTTP. Add it
+    # (and consider `preload`) once every subdomain is confirmed HTTPS-only.
+    Header always set Strict-Transport-Security "max-age=31536000"
+
+    # CSP shipped as Report-Only — NOT enforced. This has never been loaded
+    # against the running site. Before switching to enforcing:
+    #   1. Deploy.
+    #   2. Open the site, walk all 6 routes (/, /nosotros, /servicios,
+    #      /proyectos, /regimen-tributario-especial, /contacto) plus the
+    #      contact form submit and the video carousel, watching the browser
+    #      console for CSP violation reports.
+    #   3. Only once the console is clean, rename this header from
+    #      "Content-Security-Policy-Report-Only" to "Content-Security-Policy".
+    #
+    #  style   -> self + fonts.googleapis.com  ('unsafe-inline' unavoidable:
+    #             React / framer-motion / Tailwind set inline styles; low risk
+    #             for style-src, unlike script-src)
+    #  font    -> self + fonts.gstatic.com
+    #  img     -> self, data:, *.tile.openstreetmap.org (OSM map tiles)
+    #  connect -> self + docs.google.com  (contact form: fetch no-cors)
+    #  frame   -> youtube.com / youtube-nocookie.com  (video embeds)
+    #  script  -> self only (no inline scripts/handlers in index.html)
+    Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self' https://docs.google.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self' https://docs.google.com"
+
+    # Pre-compressed responses vary by Accept-Encoding. The optional (\.(br|gz))?
+    # is so the rule still matches after the rewrite to a .br/.gz sidecar below.
+    <FilesMatch "\.(js|mjs|css|svg)(\.(br|gz))?$">
+        Header append Vary Accept-Encoding
+    </FilesMatch>
+</IfModule>
+
+# ----------------------------------------------------------------------------
+#  Cache-Control
+#  FilesMatch blocks apply in document order and the LAST match wins, so the
+#  generic rule comes first and the fingerprinted rule overrides it for
+#  hashed files. Hash charset is Rollup base64url: [A-Za-z0-9_-] (8 chars).
+#  The trailing (\.(br|gz))? keeps the rules matching once mod_rewrite has
+#  swapped in a pre-compressed sidecar (e.g. app-1a2b3c4d.js.br).
+# ----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|mjs|png|jpe?g|gif|svg|webp|avif|ico|woff2?|ttf|eot|otf)(\.(br|gz))?$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css|mjs|woff2?|ttf|eot|otf|png|jpe?g|gif|svg|webp|avif|ico)(\.(br|gz))?$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "\.(html?|webmanifest)$">
+        Header set Cache-Control "no-cache, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    <FilesMatch "\.(js|css|mjs|png|jpe?g|gif|svg|webp|avif|ico|woff2?|ttf|eot|otf)(\.(br|gz))?$">
+        ExpiresDefault "access plus 1 month"
+    </FilesMatch>
+    <FilesMatch "-[A-Za-z0-9_-]{8}\.(js|css|mjs|woff2?|ttf|eot|otf|png|jpe?g|gif|svg|webp|avif|ico)(\.(br|gz))?$">
+        ExpiresDefault "access plus 1 year"
+    </FilesMatch>
+    <FilesMatch "\.(html?|webmanifest)$">
+        ExpiresDefault "access plus 0 seconds"
+    </FilesMatch>
+</IfModule>
+
+# ----------------------------------------------------------------------------
+#  Compression
+# ----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+    # On-the-fly compression for responses that have no pre-built .br/.gz
+    # sidecar (e.g. index.html served through the SPA fallback, tiny assets
+    # under the build's 1 KB threshold).
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css \
+        text/javascript application/javascript application/json \
+        image/svg+xml application/manifest+json
+
+    # Never let mod_deflate re-compress an already-compressed sidecar.
+    SetEnvIfNoCase Request_URI "\.(?:br|gz)$" no-gzip dont-vary
+</IfModule>
+
+# ----------------------------------------------------------------------------
+#  URL rewriting: pre-compressed asset selection + SPA history fallback
+# ----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # --- Serve the Brotli sidecar when the client accepts br and it exists ---
+    RewriteCond %{HTTP:Accept-Encoding} br
+    RewriteCond %{REQUEST_FILENAME}\.br -f
+    RewriteRule \.(js|mjs|css|svg|json)$ %{REQUEST_URI}.br [L]
+
+    # --- else the gzip sidecar ---
+    RewriteCond %{HTTP:Accept-Encoding} gzip
+    RewriteCond %{REQUEST_FILENAME}\.br !-f
+    RewriteCond %{REQUEST_FILENAME}\.gz -f
+    RewriteRule \.(js|mjs|css|svg|json)$ %{REQUEST_URI}.gz [L]
+
+    # --- SPA history fallback: anything that is not a real file/dir -> index ---
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.html [L]
+</IfModule>
+
+# ----------------------------------------------------------------------------
+#  Misc
+# ----------------------------------------------------------------------------
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
