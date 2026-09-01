@@ -1,17 +1,24 @@
 // URLs y configuraciones de la aplicación
 // IMPORTANTE: Las URLs sensibles deben venir de variables de entorno
 
-// Función helper para obtener variables de entorno compatible con Vite y Jest
+// Función helper para obtener variables de entorno compatible con Vite y Jest.
+// En el navegador (Vite) la única fuente real es import.meta.env, que Vite
+// sustituye estáticamente en build. process.env / window.__ENV__ se mantienen
+// como compatibilidad para entornos no-Vite (Node, inyección en runtime).
 let envCache = null;
 
 const getEnvVars = () => {
   if (envCache) return envCache;
-  
-  // Para Jest/Node
-  if (typeof process !== 'undefined' && process.env) {
+
+  // Vite (navegador y dev server): fuente principal
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    envCache = import.meta.env;
+  }
+  // Node / Jest
+  else if (typeof process !== 'undefined' && process.env) {
     envCache = process.env;
   }
-  // Para Vite (si está disponible)
+  // Inyección manual en runtime
   else if (typeof window !== 'undefined' && window.__ENV__) {
     envCache = window.__ENV__;
   }
@@ -19,7 +26,7 @@ const getEnvVars = () => {
   else {
     envCache = {};
   }
-  
+
   return envCache;
 };
 

@@ -5,6 +5,11 @@ import SectionDivider from '../components/SectionDivider';
 
 const desarrollado = [
   {
+    title:"DOCUMENTOS RTE 2026",
+    subtitle:"Ver documentos pertenecientes al Régimen Especial del año 2026, clic para descargar",
+    pdfUrl:"/zips/Documentos-RTE-2026.zip",
+  },
+  {
     title:"DOCUMENTOS RTE 2025",
     subtitle:"Ver documentos pertenecientes al Régimen Especial del año 2025, clic para descargar",
     pdfUrl:"/zips/Documentos-RTE-2025.zip",
@@ -60,7 +65,7 @@ const Taxregimen = () => {
       />
       <SectionDivider />
       
-      <ListTaxRegimen title="DOCUMENTOS RTE 2018-2025" items={desarrollado}/>
+      <ListTaxRegimen title="DOCUMENTOS RTE 2018-2026" items={desarrollado}/>
     </main>
   );
 };

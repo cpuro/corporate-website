@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteCompression from 'vite-plugin-compression';
-import { createHtmlPlugin } from 'vite-plugin-html';
 import svgr from 'vite-plugin-svgr';
 import path from 'path'; 
 
@@ -11,24 +10,6 @@ export default defineConfig({
 
   plugins: [
     react(),
-
-    // ✅ Manipulación del <head> (CSS diferido)
-    createHtmlPlugin({
-      inject: {
-        tags: [
-          {
-            tag: 'link',
-            attrs: {
-              rel: 'stylesheet',
-              href: '/assets/index.css',
-              media: 'print',
-              onload: "this.media='all'",
-            },
-            injectTo: 'head',
-          },
-        ],
-      },
-    }),
 
     // ✅ SVG como React Component (?react)
     svgr({
@@ -76,7 +57,6 @@ export default defineConfig({
           icons: ['lucide-react', 'react-icons'],
         },
       },
-      external: ['pdfjs-dist/legacy/build/pdf.worker.min.mjs'],
     },
   },
 });
