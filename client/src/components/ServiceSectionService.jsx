@@ -26,7 +26,6 @@ export default function FeatureSection() {
 
 <section
   className="py-4 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden w-full"
-  role="region"
   aria-label="Características o servicios destacados"
 >
   <div className="relative z-10 max-w-7xl mx-auto bg-white border-4 p-4 sm:p-6 lg:p-8 rounded-xl shadow-2xl border-[#3E4095]">

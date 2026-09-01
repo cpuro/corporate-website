@@ -25,7 +25,6 @@ const Form = () => {
   return (
     <section
       className="py-4 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden w-full"
-      role="region"
       aria-label="Formulario de contacto"
     >
       <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 sm:p-6 lg:p-8 border-4 rounded-xl shadow-2xl border-[#3E4095]">
@@ -67,6 +66,7 @@ const Form = () => {
                 type={type}
                 value={formData[name]}
                 onChange={handleChange}
+                aria-label={label}
                 aria-describedby={errors[name] ? `${name}-error` : undefined}
                 required
                 className="w-full border border-gray-300 rounded-lg px-4 py-2
@@ -99,6 +99,7 @@ const Form = () => {
               value={formData.mensaje}
               onChange={handleChange}
               rows={5}
+              aria-label="Mensaje"
               aria-describedby={errors.mensaje ? 'mensaje-error' : undefined}
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2
@@ -123,6 +124,7 @@ const Form = () => {
               name="politica"
               checked={formData.politica}
               onChange={handleChange}
+              aria-label="Autorizo el tratamiento de mis datos personales"
               className="mt-1"
             />
 

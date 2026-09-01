@@ -50,7 +50,6 @@ export default function VideoCarousel() {
   return (
     <section
       className="py-8 px-4 text-center relative"
-      role="region"
       aria-label="Sección de videos"
     >
       <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 rounded-2xl shadow-2xl border-[#3E4095]">
@@ -101,6 +100,11 @@ export default function VideoCarousel() {
                 referrerPolicy="strict-origin-when-cross-origin"
               />
             ) : (
+              // PENDIENTE DE CONTENIDO: falta un archivo de subtítulos (.vtt)
+              // para el vídeo local; requiere la transcripción real, que debe
+              // aportar el cliente. Añadir <track kind="captions" src=...
+              // srclang="es"> cuando exista y quitar el disable de abajo.
+              // eslint-disable-next-line jsx-a11y/media-has-caption
               <video
                 ref={videoRef}
                 controls

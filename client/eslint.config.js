@@ -45,16 +45,17 @@ export default [
     },
   },
 
-  // Accessibility: a11y rules run as WARN for now (repo has an A11Y.md, so the
-  // intent is there) — surface the count, fix in a follow-up.
+  // Accessibility: the plugin's *recommended* rule set, downgraded from error
+  // to warn (repo has an A11Y.md, so the intent is there). Only rules that
+  // recommended actually enables are touched — rules it ships as "off"
+  // (deprecated ones like label-has-for, or strict-only ones) stay off.
   {
     files: ['**/*.jsx'],
     plugins: { 'jsx-a11y': jsxA11y },
     rules: Object.fromEntries(
-      Object.keys(jsxA11y.flatConfigs.recommended.rules).map((rule) => [
-        rule,
-        'warn',
-      ]),
+      Object.entries(jsxA11y.flatConfigs.recommended.rules)
+        .filter(([, level]) => level !== 'off' && level !== 0)
+        .map(([rule]) => [rule, 'warn']),
     ),
   },
 

@@ -50,7 +50,6 @@ export default function ProjectsRealize() {
   return (
     <section
       className="py-4 px-4 text-center relative overflow-hidden"
-      role="region"
       aria-label="Sección de proyectos realizados"
     >
       <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 rounded-xl shadow-2xl border-[#3E4095]">

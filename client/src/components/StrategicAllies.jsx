@@ -35,7 +35,6 @@ function StrategicAllies() {
   return (
     <section
       className="px-4 py-4 text-center relative overflow-hidden"
-      role="region"
       aria-label="Aliados estratégicos y enlaces de interés"
     >
       {/* Fondo que ocupa todo el ancho */}

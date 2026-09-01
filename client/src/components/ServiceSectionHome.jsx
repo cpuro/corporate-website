@@ -36,7 +36,6 @@ const Services = () => {
   return (
     <section
       className="py-4 px-4 text-center relative overflow-hidden"
-      role="region"
       aria-label="Servicios ofrecidos por la Corporación"
     >
       {/* Contenido principal */}

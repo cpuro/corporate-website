@@ -90,7 +90,6 @@ const PdfViewer = ({ pdfFiles }) => {
   return (
     <section
       className="py-8 px-4 text-center relative"
-      role="region"
       aria-label="Sección de documentos PDF y proyectos"
     >
       <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 shadow-2xl rounded-xl border-[#3E4095]">
