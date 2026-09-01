@@ -2,15 +2,16 @@
 
 Aplicación cliente del sitio corporativo desarrollada con `React` y `Vite`, estilizada con `Tailwind CSS` y enrutada con `react-router-dom`. Incluye pruebas con `Jest` y `React Testing Library`.
 
-## Stack Tecnológico Detectado
+## Stack Tecnológico
 - `React` 19
 - `Vite` 6
 - `Tailwind CSS` 3.4
 - `React Router` 7
 - `react-pdf` 9 + `pdfjs-dist` 4
-- `framer-motion`, `swiper`, `leaflet`/`react-leaflet`
+- `framer-motion`, `leaflet`/`react-leaflet`, `react-intersection-observer`
 - Pruebas con `jest` + `@testing-library/*`
-- Linter con `eslint` (configuración moderna)
+- Linter con `eslint` (flat config) + `eslint-plugin-react` / `-jsx-a11y`
+- Node 24 (ver `.nvmrc` en la raíz del repo)
 
 ## Estructura del Proyecto (cliente)
 ```
@@ -22,8 +23,8 @@ client/
 ├── src/
 │   ├── assets/                   # Imágenes/iconos optimizados (WebP/SVG)
 │   ├── components/               # Componentes UI
-│   ├── config/                   # Constantes y performance
-│   ├── data/                     # Datos estáticos y worker PDF (compatibilidad)
+│   ├── config/                   # Constantes (rutas, URLs, validación)
+│   ├── data/                     # Datos estáticos
 │   ├── hooks/                    # Hooks personalizados (lazy image, formulario)
 │   ├── pages/                    # Páginas enrutadas
 │   ├── services/                 # Servicios (logger, sanitizador)
@@ -80,12 +81,20 @@ npm run test:coverage # Reporte de cobertura
 
 Si no se establecen, el proyecto usa valores por defecto en `src/config/constants.js`. Documentación adicional pendiente por definir si se amplía el uso de variables.
 
-## Estado Actual
-En desarrollo. Funcional como MVP del sitio corporativo con navegación, secciones principales y visor de PDFs. Pipeline de despliegue y servidor de producción pendientes por definir.
+## Despliegue
+El sitio se despliega como ficheros estáticos en hosting compartido cPanel/Apache.
+`npm run build` genera `dist/` (incluye el `.htaccess` de `public/`); se sube el
+contenido de `dist/` al *document root*. El detalle, los módulos de Apache
+necesarios y los síntomas si falta alguno están en el **README de la raíz del
+repo** (sección «Despliegue»).
 
 ## Notas de Arquitectura
-- Servir producción: usar `npm run preview` o un servidor estático (Apache/Nginx, servicios de hosting). No se requiere Express.
-- `index.html` no debe contener referencias a assets con hash generados del build; Vite los gestiona en producción.
+- No se requiere Express ni contenedores.
+- `index.html` no debe contener referencias a assets con hash del build; Vite los
+  inyecta en producción.
+- Los metadatos (`<title>`, `<meta>`, `<link rel="canonical">`) por ruta los
+  gestiona `src/components/Seo.jsx` con el soporte nativo de React 19.
 
 ## Licencia
-Pendiente por definir.
+Software propietario. Copyright (c) 2026 Corporación Paso a Paso. Todos los
+derechos reservados. Ver [`LICENSE`](../LICENSE) en la raíz del repositorio.

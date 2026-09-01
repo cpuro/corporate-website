@@ -1,260 +1,196 @@
 # Corporación Paso a Paso – Sitio Web
 
-Sitio web corporativo moderno y optimizado creado con **React**, **Vite** y **Tailwind CSS**. Empacado con **Docker** y servido con **Nginx** para producción de alto rendimiento.
+Sitio web corporativo de la **Corporación Paso a Paso**. Es una **SPA estática**
+construida con **React 19 + Vite 6 + Tailwind CSS 3.4**. El resultado del build
+son ficheros estáticos que se suben a un **hosting compartido cPanel/Apache**; no
+hay servidor de aplicación ni contenedores.
 
 ## 🎯 Características
 
-- ⚡ **Vite + React 19** - Desarrollo rápido con HMR
-- 🎨 **Tailwind CSS** - Diseño responsivo y personalizado
-- 📱 **Diseño Responsivo** - Optimizado para todos los dispositivos
-- 📄 **Visor de PDFs** - Integrado con react-pdf
-- 🐳 **Docker** - Contenedor listo para producción
-- 🔍 **SEO Optimizado** - Meta tags y robots.txt
-- 🚀 **Performance** - Compresión Gzip/Brotli, lazy loading
-- ✅ **Testing** - Jest y React Testing Library
-- 🔒 **Seguridad** - Headers de seguridad, sanitización
+- ⚡ **Vite 6 + React 19** – desarrollo con HMR, build optimizado
+- 🎨 **Tailwind CSS 3.4** – diseño responsivo
+- 🧭 **React Router 7** – enrutado SPA con *code splitting* por ruta
+- 📄 **Visor de PDF** – `react-pdf` + `pdfjs-dist`
+- 🗺️ **Mapa** – `react-leaflet` / Leaflet (tiles de OpenStreetMap)
+- 🔍 **SEO** – `<title>`/meta por ruta (metadatos nativos de React 19), Open
+  Graph, `sitemap.xml`, `robots.txt` y datos estructurados JSON-LD
+- 🚀 **Rendimiento** – *lazy loading*, precompresión Brotli/gzip servida por
+  `.htaccess`, *cache-busting* por hash
+- 🔒 **Seguridad** – cabeceras HTTP en `.htaccess` (incl. CSP en modo
+  *Report-Only*), sanitización de entradas propia
+- ✅ **Testing** – Jest + React Testing Library
 
-## 📋 Requisitos Previos
+## 📋 Requisitos
 
-- **Node.js** 18+ (solo para desarrollo local)
-- **Docker** y **Docker Compose** (para producción)
-- **npm** o **yarn**
+- **Node.js 24** (ver `.nvmrc`; `nvm use` lo selecciona)
+- **npm**
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura del proyecto
 
 ```
 Corporate-website/
-├── client/                    # Código React
+├── client/                     # Aplicación React (todo el código vive aquí)
+│   ├── public/                 # Se copia tal cual a dist/
+│   │   ├── .htaccess           # Config de Apache para el hosting (ver Despliegue)
+│   │   ├── documents/          # PDFs servidos desde /documents
+│   │   ├── og-image.webp       # Imagen para Open Graph
+│   │   ├── robots.txt
+│   │   └── sitemap.xml
 │   ├── src/
-│   │   ├── components/        # Componentes React reutilizables
-│   │   ├── pages/            # Páginas (Home, About, Services, etc.)
-│   │   ├── services/         # Servicios (logger, sanitizer)
-│   │   ├── hooks/            # Custom hooks
-│   │   ├── utils/            # Utilidades (imageOptimization)
-│   │   ├── assets/           # Imágenes e iconos
-│   │   ├── data/             # Datos estáticos
-│   │   ├── config/           # Configuraciones
-│   │   └── __tests__/        # Tests unitarios
-│   ├── public/               # Archivos estáticos públicos
-│   ├── vite.config.js        # Configuración de Vite
-│   ├── tailwind.config.js    # Configuración de Tailwind
+│   │   ├── components/         # Componentes de UI
+│   │   ├── pages/              # Páginas enrutadas
+│   │   ├── hooks/              # Hooks personalizados
+│   │   ├── services/           # logger, sanitizer
+│   │   ├── utils/              # utilidades (imageOptimization)
+│   │   ├── data/               # datos estáticos
+│   │   ├── config/             # constantes (rutas, URLs, validación)
+│   │   ├── assets/             # imágenes/iconos (WebP/SVG)
+│   │   └── __tests__/          # pruebas unitarias
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   ├── jest.config.cjs
 │   └── package.json
-├── server/                    # Servidor (Express) para APIs
-├── Dockerfile                 # Imagen Docker de producción
-├── nginx.conf               # Configuración de Nginx
-└── docker-compose.yml       # Orquestación de contenedores
+├── .nvmrc                       # versión de Node
+├── .editorconfig
+├── .github/workflows/ci.yml     # CI: lint + test + build
+├── A11Y.md
+└── IMPROVEMENTS_SUMMARY.md
 ```
 
-## 🚀 Inicio Rápido
-
-### Desarrollo Local
+## 🚀 Desarrollo local
 
 ```bash
-# Ir a la carpeta del cliente
 cd client
-
-# Instalar dependencias
-npm install
-
-# Iniciar servidor de desarrollo
-npm run dev
-
-# La aplicación estará disponible en http://localhost:5173
+npm ci
+npm run dev          # http://localhost:5173
 ```
 
-### Build para Producción
+## 🏗️ Build de producción
 
 ```bash
-# Crear build optimizado
-npm run build
-
-# Vista previa del build
-npm run preview
+cd client
+npm run build        # genera client/dist/
+npm run preview      # sirve client/dist/ en local para revisar
 ```
 
-## 🐳 Ejecutar con Docker
+`client/dist/` contiene el `index.html`, los assets con hash, sus versiones
+`.br`/`.gz` y el `.htaccess`.
 
-### Opción 1: Docker Compose (Recomendado)
+## 📤 Despliegue (hosting compartido cPanel/Apache)
+
+No hay despliegue automático. El proceso es manual:
+
+1. `cd client && npm ci && npm run build`.
+2. Subir **el contenido de `client/dist/`** (no la carpeta, su contenido) al
+   *document root* del hosting (normalmente `public_html/`), por FTP/SFTP o el
+   Administrador de archivos de cPanel. El `.htaccess` va incluido en `dist/`.
+3. Comprobar en el navegador las 6 rutas (`/`, `/nosotros`, `/servicios`,
+   `/proyectos`, `/regimen-tributario-especial`, `/contacto`) y una recarga
+   directa en una ruta profunda (p. ej. recargar estando en `/nosotros`).
+
+El `.htaccess` necesita `mod_headers`, `mod_expires`, `mod_rewrite` y
+`mod_deflate` (todos habituales en cPanel) y que el hosting permita
+`AllowOverride`/`Options FollowSymLinks` para `.htaccess`.
+
+**Síntomas si algo de eso falta:**
+
+- Recargar en una ruta que no sea `/` devuelve **404** → `mod_rewrite` está
+  desactivado o `AllowOverride` no lo permite (falla el *fallback* SPA).
+- Los ficheros se sirven sin comprimir (más pesados de lo esperado) →
+  `mod_rewrite`/`mod_headers` no están sirviendo los `.br`/`.gz` precomprimidos.
+- Un **HTTP 500** en todo el sitio nada más subir el `.htaccess` → algún módulo
+  no está y el `<IfModule>` no lo cubre; revisar el `error_log` de cPanel.
+
+**CSP:** se envía como `Content-Security-Policy-Report-Only`, es decir **no
+bloquea nada** todavía. Para activarla hay que desplegar, recorrer las 6 rutas
+(más el envío del formulario y el carrusel de vídeo) vigilando la consola del
+navegador, y solo cuando no haya avisos, renombrar la cabecera a
+`Content-Security-Policy` en el `.htaccess` (instrucciones dentro del propio
+fichero).
+
+## ✅ Scripts (`client/`)
 
 ```bash
-# Construir imagen
-docker-compose build
-
-# Iniciar contenedor
-docker-compose up -d
-
-# Acceder a http://localhost:8080
+npm run dev            # servidor de desarrollo
+npm run build          # build de producción -> dist/
+npm run preview        # sirve el build en local
+npm run lint           # ESLint (0 errores esperados)
+npm test               # Jest
+npm run test:watch     # Jest en modo watch
+npm run test:coverage  # Jest con cobertura (hay umbral mínimo configurado)
 ```
 
-### Opción 2: Docker Manual
+## 🔧 Variables de entorno
 
-```bash
-# Construir imagen
-docker build -t corporacion-pasoapaso .
-
-# Ejecutar contenedor
-docker run -p 8080:80 corporacion-pasoapaso
-```
-
-## ✅ Scripts Disponibles
-
-### Desarrollo
-
-```bash
-npm run dev          # Iniciar servidor de desarrollo
-npm run build        # Construir para producción
-npm run preview      # Vista previa de build
-npm run lint         # Ejecutar ESLint
-```
-
-### Testing
-
-```bash
-npm test             # Ejecutar tests
-npm run test:watch   # Tests en modo observador
-npm run test:coverage # Cobertura de tests
-```
-
-## 🔧 Configuración de Variables de Entorno
-
-Crea un archivo `.env` en la carpeta `client/` (opcional):
+Opcionales. Crear `client/.env` (o `.env.local`) a partir de `client/.env.example`:
 
 ```env
-# API Configuration
-VITE_API_URL=https://api.tudominio.com
-
-# PDF Configuration
-VITE_PDF_MAX_SIZE=10
-
-# Logging
+# URL del Google Form del formulario de contacto (hay un valor por defecto en el código)
+VITE_GOOGLE_FORM_URL=...
+# Nivel de log
 VITE_LOG_LEVEL=info
 ```
 
-## 📦 Dependencias Principales
+Solo se leen variables con prefijo `VITE_` (vía `import.meta.env`). Si no hay
+`.env`, la app usa los valores por defecto del código.
 
-- **react** (19.1.0) - Librería de UI
-- **react-router-dom** (7.6.0) - Enrutamiento
-- **react-pdf** (9.2.1) - Visor de PDFs
-- **pdfjs-dist** (4.8.69) - Soporte para PDFs
-- **tailwindcss** (3.4) - Estilos
-- **framer-motion** (12.12.1) - Animaciones
-- **leaflet** & **react-leaflet** (5.0.0) - Mapas
-- **react-icons** (5.5.0) - Iconos
-- **swiper** (11.2.6) - Carrusel
+## 📦 Dependencias principales
 
-## 🔐 Características de Seguridad
+| Paquete | Uso |
+|---|---|
+| `react` / `react-dom` 19.2 | UI |
+| `react-router-dom` 7.6 | enrutado |
+| `react-pdf` 9.2 + `pdfjs-dist` 4.8 | visor de PDF |
+| `tailwindcss` 3.4 | estilos |
+| `framer-motion` 12 | animaciones |
+| `leaflet` 1.9 + `react-leaflet` 5 | mapa |
+| `lucide-react`, `react-icons`, `@fortawesome/*`, `@heroicons/react` | iconos |
+| `react-intersection-observer` 9 | lazy loading por viewport |
 
-- ✅ Sanitización de HTML (DOMPurify)
-- ✅ Headers de seguridad HTTP (X-Frame-Options, CSP, etc.)
-- ✅ Validación de formularios
-- ✅ Protección contra XSS
+## 🔐 Seguridad
 
-## 🚀 Deployment en Producción
+- **Sanitización de entradas propia** en `client/src/services/sanitizer.js`
+  (no se usa DOMPurify).
+- Validación de formularios en cliente.
+- Cabeceras HTTP en `client/public/.htaccess`: `X-Frame-Options`,
+  `X-Content-Type-Options`, `Referrer-Policy`, `Strict-Transport-Security` y
+  `Content-Security-Policy-Report-Only` (pendiente de activar, ver Despliegue).
 
-### En Servidor con Docker
+## 📊 Rendimiento
 
-```bash
-# Clonar repositorio
-git clone <tu-repo>
-cd Corporate-website
-
-# Construir y ejecutar
-docker-compose up -d
-
-# Verificar que está corriendo
-docker ps
-```
-
-### En Docker Hub
-
-```bash
-# Construir con tag
-docker build -t tu-usuario/corporacion-pasoapaso:latest .
-
-# Subir a Docker Hub
-docker push tu-usuario/corporacion-pasoapaso:latest
-
-# Ejecutar desde Docker Hub
-docker run -p 8080:80 tu-usuario/corporacion-pasoapaso:latest
-```
-
-### Verificar Build de Producción
-
-```bash
-# Listar assets incluidos
-docker exec <container-id> ls -la /usr/share/nginx/html/assets/
-
-# Verificar que el worker de PDF se incluyó
-docker exec <container-id> ls /usr/share/nginx/html/assets/ | grep pdf.worker
-```
-
-## 📊 Performance & Optimizaciones
-
-- ✅ **Code Splitting** - Carga de componentes bajo demanda
-- ✅ **Lazy Loading** - Imágenes se cargan solo cuando entran en viewport
-- ✅ **Compresión** - Gzip y Brotli habilitados en Nginx
-- ✅ **Caché de Assets** - Hash-based cache busting
-- ✅ **Minimificación** - CSS y JS minimizados
-- ✅ **Optimización de Imágenes** - WebP cuando es soportado
+- *Code splitting* por ruta (`React.lazy` + `Suspense`).
+- *Lazy loading* de secciones e imágenes (IntersectionObserver).
+- Precompresión Brotli + gzip en el build; el `.htaccess` sirve el `.br`/`.gz`
+  según `Accept-Encoding`.
+- *Cache-busting* por hash: assets con hash → `Cache-Control: immutable` 1 año;
+  resto de estáticos → 1 mes; HTML → sin caché.
+- Imágenes en WebP.
 
 ## 🧪 Testing
 
 ```bash
-# Ejecutar todos los tests
+cd client
 npm test
-
-# Tests con cobertura
 npm run test:coverage
-
-# Tests en modo observador
-npm run test:watch
 ```
 
-Los tests se encuentran en `src/__tests__/`
+Las pruebas están en `client/src/__tests__/`. `jest.config.cjs` fija un
+`coverageThreshold` mínimo que actúa de trinquete: si la cobertura baja de lo
+medido, el comando falla.
 
-## 📚 Documentación Adicional
+## 🤖 CI
 
-Ver archivos incluidos en el proyecto:
+`.github/workflows/ci.yml` ejecuta **lint + test + build** en cada push/PR. No
+incluye despliegue.
 
-- `TESTING.md` - Detalles de testing
-- `PERFORMANCE.md` - Análisis de performance
-- `A11Y.md` - Accesibilidad
-- `IMPROVEMENTS_SUMMARY.md` - Mejoras implementadas
+## 📚 Documentación adicional
 
-## 🐛 Solución de Problemas
-
-### El worker de PDF no se carga
-
-```bash
-# Verificar que el worker esté en los assets
-docker exec <container-id> ls /usr/share/nginx/html/assets/ | grep pdf.worker
-
-# Verificar logs de Nginx
-docker logs <container-id>
-```
-
-### Puerto 8080 ya en uso
-
-```bash
-# Cambiar puerto en docker-compose.yml
-ports:
-  - "8081:80"  # Cambiar a otro puerto
-```
-
-### Reconstruir imagen sin caché
-
-```bash
-docker-compose build --no-cache
-```
+- `A11Y.md` – accesibilidad
+- `IMPROVEMENTS_SUMMARY.md` – resumen de mejoras
 
 ## 📝 Licencia
 
-MIT License - Ver LICENSE.md para más detalles
-
-## 👥 Contacto & Soporte
-
-Para reportar problemas o sugerencias, contacta al equipo de desarrollo.
-
----
-
-**Última actualización:** 21 de Noviembre de 2025
+Software propietario. Copyright (c) 2026 Corporación Paso a Paso. Todos los
+derechos reservados. Ver [`LICENSE`](LICENSE): no se concede licencia de uso,
+copia, distribución ni modificación sin autorización previa y por escrito del
+titular.
