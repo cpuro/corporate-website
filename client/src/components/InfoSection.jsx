@@ -1,16 +1,6 @@
 import { motion } from 'framer-motion';
 import TitlePrincipal from '../components/TitlePrincipal';
 
-const imageAnimation = {
-  initial: { opacity: 0, scale: 0.95 },
-  whileInView: { opacity: 1, scale: 1 },
-  transition: (index) => ({
-    delay: 0.2 + index * 0.2,
-    duration: 0.5,
-  }),
-  viewport: { once: true },
-};
-
 const InfoSection = ({ Icon, title, text, images = [] }) => {
   const safeTitle =
     typeof title === "string" ? title : "info";

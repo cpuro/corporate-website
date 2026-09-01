@@ -13,7 +13,7 @@ const logger = {
   },
 
   debug: (message, data = null) => {
-    if (process.env.NODE_ENV === 'development') {
+    if (import.meta.env.DEV) {
       console.debug(`[DEBUG] ${message}`, data || '');
     }
   },

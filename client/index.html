@@ -13,24 +13,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Google Fonts optimizado -->
+    <!-- Google Fonts (stylesheet normal: sin JS inline para no necesitar
+         'unsafe-hashes'/'unsafe-inline' en la CSP; con preconnect arriba y
+         display=swap en la URL el coste de render-blocking es despreciable) -->
     <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
-      />
-    </noscript>
 
     <!-- Preload imágenes críticas para LCP -->
     <link

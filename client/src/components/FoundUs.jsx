@@ -1,26 +1,29 @@
   import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
   import L from 'leaflet';
-  import { useNavigate } from 'react-router-dom';
   import { motion } from 'framer-motion';
   import MapPin  from '../assets/icons/map-pin.svg?react';
   import TitlePrincipal from '../components/TitlePrincipal';
   import 'leaflet/dist/leaflet.css';
   import { Link } from "react-router-dom";
+  import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+  import markerIcon from 'leaflet/dist/images/marker-icon.png';
+  import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 
 
-  // Corrige los íconos predeterminados de Leaflet
+  // Corrige los íconos predeterminados de Leaflet. Se sirven desde el paquete
+  // local (bundleados por Vite) en vez de https://unpkg.com, para no depender
+  // de un CDN de terceros en runtime ni de una versión clavada a mano.
   delete L.Icon.Default.prototype._getIconUrl;
   L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon-2x.png',
-    iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
-    shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
+    iconRetinaUrl: markerIcon2x,
+    iconUrl: markerIcon,
+    shadowUrl: markerShadow,
   });
 
 
   
   const FoundUs = ({ showButton = true }) => {
-    const navigate = useNavigate();
     const position = [7.061143497133173, -73.84913368503388];
     
     return (

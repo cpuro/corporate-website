@@ -29,12 +29,20 @@ export const getImageSizes = (maxWidth = '100vw') => {
  * @returns {boolean}
  */
 export const supportsWebP = () => {
-  if (typeof window === 'undefined') return true;
-  
-  const canvas = document.createElement('canvas');
-  canvas.width = 1;
-  canvas.height = 1;
-  return canvas.toDataURL('image/webp').indexOf('image/webp') === 0;
+  if (typeof document === 'undefined') return false;
+
+  try {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1;
+    canvas.height = 1;
+    // toDataURL can return null or throw in environments without a real canvas
+    // (jsdom, some headless browsers). A browser without WebP support falls back
+    // to image/png, so check the returned MIME prefix.
+    const dataUrl = canvas.toDataURL('image/webp');
+    return typeof dataUrl === 'string' && dataUrl.indexOf('data:image/webp') === 0;
+  } catch {
+    return false;
+  }
 };
 
 /**

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import Globe from '../assets/icons/globe.svg?react';
 import TitlePrincipal from '../components/TitlePrincipal';
 import UsefulSiteCard from "./UsefulSiteCard";

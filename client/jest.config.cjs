@@ -21,12 +21,15 @@ module.exports = {
     '!**/node_modules/**',
     '!**/vendor/**',
   ],
+  // Ratchet: set just below the measured coverage so it can only go up.
+  // Measured 2026-09 (npx jest --coverage): stmts 11.22 / branch 9.91 /
+  // funcs 8.09 / lines 12.32. Raise these as coverage improves.
   coverageThreshold: {
     global: {
-      branches: 5,
-      functions: 5,
-      lines: 5,
-      statements: 5,
+      branches: 9,
+      functions: 8,
+      lines: 12,
+      statements: 11,
     },
   },
 };
