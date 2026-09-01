@@ -2,9 +2,9 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="description" content="Corporación Paso a Paso: Transformamos vidas con proyectos sociales y servicios innovadores en Colombia.">
-    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- <title> y <meta name="description"> por ruta los gestiona <Seo> (React 19). -->
+
     <!-- DNS Prefetch para optimizar conexiones -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -39,7 +39,56 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#3E4095" />
-    <title>Corporación Paso A Paso</title>
+
+    <!-- Sin <title> estático a propósito: lo posee <Seo> (React 19) para que no
+         haya dos <title> en el head (el navegador usaría el primero). El
+         <Seo> se monta en todas las rutas desde App.jsx. -->
+
+    <!-- Open Graph / Twitter: valores por defecto (home). Los scrapers sociales
+         no ejecutan JS, así que estas etiquetas estáticas son las que se usan al
+         compartir CUALQUIER ruta. Para OG por ruta haría falta prerender. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Corporación Paso a Paso" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:title" content="Corporación Paso a Paso" />
+    <meta
+      property="og:description"
+      content="Entidad sin ánimo de lucro que transforma la realidad social y económica de Barrancabermeja y el Magdalena Medio, Colombia."
+    />
+    <meta property="og:url" content="https://www.corporacionpasoapaso.com/" />
+    <meta property="og:image" content="https://www.corporacionpasoapaso.com/og-image.webp" />
+    <meta property="og:image:alt" content="Corporación Paso a Paso" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Corporación Paso a Paso" />
+    <meta
+      name="twitter:description"
+      content="Entidad sin ánimo de lucro que transforma la realidad social y económica de Barrancabermeja y el Magdalena Medio, Colombia."
+    />
+    <meta name="twitter:image" content="https://www.corporacionpasoapaso.com/og-image.webp" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        "name": "Corporación Paso a Paso",
+        "alternateName": "Corporación Paso a Paso",
+        "url": "https://www.corporacionpasoapaso.com/",
+        "logo": "https://www.corporacionpasoapaso.com/logo.webp",
+        "image": "https://www.corporacionpasoapaso.com/og-image.webp",
+        "description": "Entidad sin ánimo de lucro constituida en 2004 en Barrancabermeja que planifica, gestiona y controla planes, programas y proyectos para el desarrollo social del Magdalena Medio, Colombia.",
+        "email": "contacto@corporacionpasoapaso.com",
+        "telephone": "+573156756556",
+        "foundingDate": "2004-03-08",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Cra 31 #48-29",
+          "addressLocality": "Barrancabermeja",
+          "addressRegion": "Santander",
+          "addressCountry": "CO"
+        },
+        "sameAs": ["https://www.facebook.com/share/15tYgfGiN4/?mibextid=qi2Omg"]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
