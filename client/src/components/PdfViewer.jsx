@@ -1,12 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
 import TitlePrincipal from '../components/TitlePrincipal';
+import SectionCard from '../components/SectionCard';
 import { HiDocumentSearch } from "react-icons/hi";
 import { Document, Page, pdfjs } from 'react-pdf';
-import pdfWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import logger from '../services/logger';
 
-// Configurar el worker para PDF.js
-pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
+// Worker de PDF.js. `new URL(<pkg>, import.meta.url)` es el patrón que resuelven
+// tanto Vite (dev: lo sirve por su pipeline; build: lo emite como asset con
+// hash) como react-pdf 9. El `?url` sobre el .mjs de node_modules funcionaba en
+// build pero en dev dejaba el worker sin arrancar (TypeError sendWithPromise).
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 const PdfViewer = ({ pdfFiles }) => {
   const [currentPdfIndex, setCurrentPdfIndex] = useState(0);
@@ -92,7 +98,7 @@ const PdfViewer = ({ pdfFiles }) => {
       className="py-8 px-4 text-center relative"
       aria-label="Sección de documentos PDF y proyectos"
     >
-      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 shadow-2xl rounded-xl border-[#3E4095]">
+      <SectionCard>
         <TitlePrincipal
           title="Explora los proyectos, planes y cartillas de la Corporación."
           Icon={HiDocumentSearch}
@@ -106,7 +112,7 @@ const PdfViewer = ({ pdfFiles }) => {
             className={`w-full sm:w-auto px-4 py-2 text-sm sm:text-base text-white border border-white font-poppins rounded-lg transition text-center ${
               currentPdfIndex === 0 || !pdfLoaded
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#3E4095] hover:bg-[#F16139]"
+                : "bg-primary hover:bg-[#F16139]"
             }`}
           >
             Anterior
@@ -118,7 +124,7 @@ const PdfViewer = ({ pdfFiles }) => {
             className={`w-full sm:w-auto px-4 py-2 text-sm sm:text-base text-white border border-white font-poppins rounded-lg transition text-center ${
               currentPdfIndex === pdfFiles.length - 1 || !pdfLoaded
                 ? "bg-gray-400 cursor-not-allowed"
-                : "bg-[#3E4095] hover:bg-[#F16139]"
+                : "bg-primary hover:bg-[#F16139]"
             }`}
           >
             Siguiente
@@ -129,7 +135,7 @@ const PdfViewer = ({ pdfFiles }) => {
           ref={containerRef}
           className="shadow-md p-1 rounded-lg w-full mx-auto overflow-hidden"
         >
-          <div className="overflow-y-auto h-[600px] pr-4 bg-white/50 p-4 rounded-xl shadow-2xl border-4 border-[#3E4095]">
+          <div className="overflow-y-auto h-[600px] pr-4 bg-white/50 p-4 rounded-xl shadow-2xl border-4 border-primary">
             {pdfError && (
               <div className="text-center text-red-500 font-poppins my-8">
                 Error: {pdfError}
@@ -166,7 +172,7 @@ const PdfViewer = ({ pdfFiles }) => {
             )}
           </div>
         </div>
-      </div>
+      </SectionCard>
     </section>
   );
 };

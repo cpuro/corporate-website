@@ -23,6 +23,9 @@ const Home = () => {
       <LazySection importFunc={() => import("../components/ServiceSectionHome")} fallback={fallback} />
       <SectionDivider />
 
+      <LazySection importFunc={() => import("../components/LatestProject")} fallback={fallback} />
+      <SectionDivider />
+
       <LazySection importFunc={() => import("../components/StrategicAllies")} fallback={fallback} />
       <SectionDivider />
 
