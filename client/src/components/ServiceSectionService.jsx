@@ -28,7 +28,7 @@ export default function FeatureSection() {
   className="py-4 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden w-full"
   aria-label="Características o servicios destacados"
 >
-  <div className="relative z-10 max-w-7xl mx-auto bg-white border-4 p-4 sm:p-6 lg:p-8 rounded-xl shadow-2xl border-[#3E4095]">
+  <div className="relative z-10 max-w-7xl mx-auto bg-white border-4 p-4 sm:p-6 lg:p-8 rounded-xl shadow-2xl border-primary">
     
     <TitlePrincipal
       title="NUESTROS SERVICIOS"
@@ -42,7 +42,7 @@ export default function FeatureSection() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ delay: 0.3, duration: 0.6 }}
-      className="text-base sm:text-lg text-left text-black mb-4 font-poppins p-4 sm:p-6 border-4 rounded-xl border-[#3E4095]"
+      className="text-base sm:text-lg text-left text-black mb-4 font-poppins p-4 sm:p-6 border-4 rounded-xl border-primary"
     >
       Impulsamos el desarrollo territorial y sostenible a través de asesorías y consultorías técnicas y estratégicas en planes, programas y proyectos.
     </motion.p>
@@ -68,11 +68,11 @@ export default function FeatureSection() {
               initial="hidden"
               animate={inView ? "visible" : "hidden"}
               variants={featureVariants}
-              className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6 rounded-xl border-4 shadow-2xl border-[#3E4095]"
+              className="flex flex-col md:flex-row items-start gap-4 p-4 sm:p-6 rounded-xl border-4 shadow-2xl border-primary"
             >
               <div className="w-full">
                 <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold border-b-2 border-[#3E4095]">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold border-b-2 border-primary">
                     {feature.title}
                   </h3>
                 </div>

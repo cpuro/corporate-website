@@ -14,7 +14,7 @@ const InfoSection = ({ Icon, title, text, images = [] }) => {
       className="py-8 px-4 text-center relative"
       aria-labelledby={titleId}
     >
-      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 rounded-md shadow-2xl border-[#3E4095]">
+      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 rounded-md shadow-2xl border-primary">
         <TitlePrincipal
           title={title}
           Icon={Icon}
@@ -22,7 +22,7 @@ const InfoSection = ({ Icon, title, text, images = [] }) => {
           id={titleId}
         />
 
-        <p className="bg-white p-4 border-4 rounded-md border-[#3E4095] font-poppins mb-6 text-base md:text-lg text-black text-left md:text-justify">
+        <p className="bg-white p-4 border-4 rounded-md border-primary font-poppins mb-6 text-base md:text-lg text-black text-left md:text-justify">
           {text}
         </p>
 
@@ -33,7 +33,7 @@ const InfoSection = ({ Icon, title, text, images = [] }) => {
                 key={src}
                 src={src}
                 alt={`${safeTitle} - imagen ${index + 1}`}
-                className="rounded-xl shadow-2xl border-4 border-[#3E4095]"
+                className="rounded-xl shadow-2xl border-4 border-primary"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{

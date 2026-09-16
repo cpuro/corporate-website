@@ -25,7 +25,7 @@ function TitlePrincipal({
   title = "BIENVENIDOS",
   content = null,
   Icon,
-  iconClass = "text-[#3E4095] text-4xl",
+  iconClass = "text-primary text-4xl",
   align = "center",
   showUnderline = true,
   contentPosition = "below", // "below" | "right"
@@ -39,7 +39,7 @@ function TitlePrincipal({
       {Icon && <Icon className={iconClass} aria-hidden />}
       <Heading
         className={`font-poppins text-3xl sm:text-2xl md:text-3xl lg:text-4xl text-black ${
-          showUnderline ? "border-b-4 border-[#3E4095]" : ""
+          showUnderline ? "border-b-4 border-primary" : ""
         }`}
       >
         {title}

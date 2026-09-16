@@ -24,7 +24,7 @@ export default class ErrorBoundary extends Component {
           role="alert"
           className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center font-poppins"
         >
-          <h1 className="text-2xl font-semibold text-[#3E4095]">
+          <h1 className="text-2xl font-semibold text-primary">
             Algo ha ido mal
           </h1>
           <p className="text-gray-700 max-w-md">
@@ -33,7 +33,7 @@ export default class ErrorBoundary extends Component {
           </p>
           <a
             href="/"
-            className="px-4 py-2 text-white bg-[#3E4095] rounded-lg hover:bg-[#F16139] transition"
+            className="px-4 py-2 text-white bg-primary rounded-lg hover:bg-[#F16139] transition"
           >
             Volver al inicio
           </a>

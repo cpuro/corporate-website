@@ -53,7 +53,7 @@ export default function VisionMision() {
       className="py-8 px-4 text-center relative"
       aria-labelledby="vision-mision-title"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full border-4 border-[#3E4095] max-w-6xl mx-auto bg-white p-4 rounded-md shadow-2xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center w-full border-4 border-primary max-w-6xl mx-auto bg-white p-4 rounded-md shadow-2xl">
         {/* Imagen */}
         <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px] perspective-1000">
           <AnimatePresence mode="wait">
@@ -72,7 +72,7 @@ export default function VisionMision() {
                 decoding="async"
                 width="384"
                 height="384"
-                className="rounded-full w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover mx-auto border-4 border-[#3E4095]"
+                className="rounded-full w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover mx-auto border-4 border-primary"
               />
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[70%] h-6 bg-black/60 rounded-full blur-md opacity-70" />
             </motion.div>

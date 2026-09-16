@@ -27,7 +27,7 @@ const Form = () => {
       className="py-4 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden w-full"
       aria-label="Formulario de contacto"
     >
-      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 sm:p-6 lg:p-8 border-4 rounded-xl shadow-2xl border-[#3E4095]">
+      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 sm:p-6 lg:p-8 border-4 rounded-xl shadow-2xl border-primary">
 
         {toast.show && (
           <div
@@ -49,7 +49,7 @@ const Form = () => {
 
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-3xl mx-auto space-y-5 bg-white border-4 border-[#3E4095] rounded-xl shadow-lg px-4 sm:px-6 lg:px-10 py-8"
+          className="w-full max-w-3xl mx-auto space-y-5 bg-white border-4 border-primary rounded-xl shadow-lg px-4 sm:px-6 lg:px-10 py-8"
         >
           {formFields.map(({ name, label, type }) => (
             <div key={name}>
@@ -159,7 +159,7 @@ const Form = () => {
             disabled={submitting}
             aria-busy={submitting}
             aria-disabled={submitting}
-            className={`w-full bg-[#3E4095] hover:bg-[#F16139]
+            className={`w-full bg-primary hover:bg-[#F16139]
                         text-white font-poppins font-semibold
                         py-2 px-6 rounded-lg transition
                         ${submitting ? 'opacity-50 cursor-not-allowed' : ''}`}

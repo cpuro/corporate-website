@@ -52,7 +52,7 @@ export default function VideoCarousel() {
       className="py-8 px-4 text-center relative"
       aria-label="Sección de videos"
     >
-      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 rounded-2xl shadow-2xl border-[#3E4095]">
+      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 rounded-2xl shadow-2xl border-primary">
         <TitlePrincipal title="VIDEOS" Icon={Youtube} />
 
         <div className="relative w-full md:max-w-3xl mx-auto">
@@ -87,7 +87,7 @@ export default function VideoCarousel() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="aspect-video w-full rounded-xl border-4 border-[#3E4095]"
+            className="aspect-video w-full rounded-xl border-4 border-primary"
           >
             {currentVideo.type === "youtube" ? (
               <iframe
@@ -122,7 +122,7 @@ export default function VideoCarousel() {
             aria-label="Video anterior"
             className="absolute top-1/2 left-1 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow hover:bg-white transition"
           >
-            <ChevronLeft className="w-6 h-6 text-[#3E4095]" />
+            <ChevronLeft className="w-6 h-6 text-primary" />
           </button>
 
           <button
@@ -130,7 +130,7 @@ export default function VideoCarousel() {
             aria-label="Siguiente video"
             className="absolute top-1/2 right-1 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow hover:bg-white transition"
           >
-            <ChevronRight className="w-6 h-6 text-[#3E4095]" />
+            <ChevronRight className="w-6 h-6 text-primary" />
           </button>
         </div>
       </div>

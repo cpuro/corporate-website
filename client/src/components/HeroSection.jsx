@@ -134,7 +134,7 @@ export default function HeroSection({
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Link
                 to={slideData.link}
-                className="px-6 py-3 text-white border border-white bg-[#3E4095] rounded-lg hover:bg-[#F16139] transition"
+                className="px-6 py-3 text-white border border-white bg-primary rounded-lg hover:bg-[#F16139] transition"
               >
                 Saber más
               </Link>

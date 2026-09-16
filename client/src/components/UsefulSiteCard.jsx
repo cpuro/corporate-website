@@ -9,7 +9,7 @@ function UsefulSiteCard({ title, link, icon, index, variants }) {
         rel="noopener noreferrer"
         aria-label={`Ir al sitio web de ${title}`}
         title={title}
-        className="group w-full h-40 bg-white px-4 py-3 rounded-xl shadow-lg hover:shadow-2xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex flex-col justify-between items-center border-4 border-[#3E4095]"
+        className="group w-full h-40 bg-white px-4 py-3 rounded-xl shadow-lg hover:shadow-2xl hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex flex-col justify-between items-center border-4 border-primary"
         >
         <div className="flex-grow flex items-center justify-center">
             <img
@@ -19,7 +19,7 @@ function UsefulSiteCard({ title, link, icon, index, variants }) {
             loading="lazy"
             />
         </div>
-        <h3 className="text-sm text-center text-black group-hover:text-[#3E4095] font-poppins transition-colors duration-300 mt-2 leading-tight line-clamp-2">
+        <h3 className="text-sm text-center text-black group-hover:text-primary font-poppins transition-colors duration-300 mt-2 leading-tight line-clamp-2">
             {title}
         </h3>
         </motion.a>

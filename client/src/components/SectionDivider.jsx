@@ -22,7 +22,7 @@ const SectionDivider = ({ custom = 1 }) => (
     custom={custom}
   >
     <div className="px-16">
-      <div className="h-[4px] bg-[#3E4095] my-8" />
+      <div className="h-[4px] bg-primary my-8" />
     </div>
   </motion.div>
 );

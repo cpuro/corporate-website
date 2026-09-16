@@ -76,7 +76,7 @@ export default function Navbar({ isVisible }) {
           onClick={toggleMenu}
           aria-label="Abrir menú de navegación"
           aria-expanded={menuOpen}
-          className="lg:hidden z-50 bg-white bg-opacity-90 rounded p-2 shadow-md text-[#3E4095]"
+          className="lg:hidden z-50 bg-white bg-opacity-90 rounded p-2 shadow-md text-primary"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {menuOpen ? (
@@ -99,7 +99,7 @@ export default function Navbar({ isVisible }) {
               : 'transparent',
           }}
         >
-          <ul className="flex flex-col lg:flex-row px-6 py-4 lg:py-0 font-poppins font-semibold text-[#3E4095]">
+          <ul className="flex flex-col lg:flex-row px-6 py-4 lg:py-0 font-poppins font-semibold text-primary">
             {NAV_ITEMS.map(({ to, label }) => (
               <li key={to}>
                 <NavLink
@@ -124,7 +124,7 @@ export default function Navbar({ isVisible }) {
         </div>
 
         {/* Redes sociales (desktop) */}
-        <SocialLinks className="hidden lg:flex flex-col items-center text-center text-[#3E4095]" />
+        <SocialLinks className="hidden lg:flex flex-col items-center text-center text-primary" />
       </div>
     </nav>
   );

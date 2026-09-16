@@ -4,6 +4,7 @@ import img2 from "../assets/images/projects-completed-1.webp";
 import img3 from "../assets/images/projects-completed-3.webp";
 import img4 from "../assets/images/projects-completed-4.webp"; 
 import TitlePrincipal from '../components/TitlePrincipal';
+import SectionCard from '../components/SectionCard';
 
 import BookmarkCheck  from '../assets/icons/bookmark-check.svg?react';
 import Share2 from '../assets/icons/share-2.svg?react';
@@ -52,7 +53,7 @@ export default function ProjectsRealize() {
       className="py-4 px-4 text-center relative overflow-hidden"
       aria-label="Sección de proyectos realizados"
     >
-      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 border-4 rounded-xl shadow-2xl border-[#3E4095]">
+      <SectionCard>
        {/* Título principal + icono */}
       <TitlePrincipal title="PROYECTOS REALIZADOS" Icon={Share2} align="left"/>
         {/* Contenido */}
@@ -64,7 +65,7 @@ export default function ProjectsRealize() {
             viewport={{ once: true }}
             variants={textVariants}
             custom={1}
-            className="p-4  rounded-xl bg-white border-4 border-[#3E4095] "
+            className="p-4  rounded-xl bg-white border-4 border-primary "
           >
             <ul className="grid grid-cols-1 gap-6 text-black leading-relaxed text-left">
               {proyectsRealized.map((item, index) => (
@@ -77,7 +78,7 @@ export default function ProjectsRealize() {
                   variants={textVariants}
                   className="flex items-start gap-3"
                 >
-                  <BookmarkCheck className="text-[#3E4095] mt-1 flex-shrink-0 w-5 h-5" />
+                  <BookmarkCheck className="text-primary mt-1 flex-shrink-0 w-5 h-5" />
                   <span className="text-base font-poppins">{item}</span>
                 </motion.li>
               ))}
@@ -102,12 +103,12 @@ export default function ProjectsRealize() {
                 fetchPriority="low"
                 width="400"
                 height="300"
-                className="w-full h-auto max-w-md rounded-xl border-4 border-[#3E4095] shadow-2xl"
+                className="w-full h-auto max-w-md rounded-xl border-4 border-primary shadow-2xl"
               />
             ))}
           </motion.div>
         </div>
-      </div>
+      </SectionCard>
     </section>
   );
 }

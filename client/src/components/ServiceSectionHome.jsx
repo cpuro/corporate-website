@@ -39,7 +39,7 @@ const Services = () => {
       aria-label="Servicios ofrecidos por la Corporación"
     >
       {/* Contenido principal */}
-      <div className="bg-white p-6 rounded-xl shadow-2xl border-4 border-[#3E4095]  relative z-10 max-w-6xl mx-auto">
+      <div className="bg-white p-6 rounded-xl shadow-2xl border-4 border-primary  relative z-10 max-w-6xl mx-auto">
         {/* Título principal + icono */}
        <TitlePrincipal title="NUESTROS SERVICIOS" Icon={Briefcase}/>
         {/* Subtítulo */}
@@ -65,7 +65,7 @@ const Services = () => {
               variants={textVariants}
               className="flex items-start gap-3 "
             >
-              <FileCheck className="text-[#3E4095]  mt-1 flex-shrink-0 w-6 h-6" />
+              <FileCheck className="text-primary  mt-1 flex-shrink-0 w-6 h-6" />
               <span className="text-lg font-poppins">{item}.</span>
             </motion.li>
           ))}
@@ -80,7 +80,7 @@ const Services = () => {
               download="portafolio-corporacion.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base text-white border border-white bg-[#3E4095] font-poppins rounded-lg hover:bg-[#F16139] transition text-center"
+              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base text-white border border-white bg-primary font-poppins rounded-lg hover:bg-[#F16139] transition text-center"
             >
               Descargar Portafolio
             </Link>
@@ -89,7 +89,7 @@ const Services = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               to={"/contacto"}
-              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base text-white border border-white bg-[#3E4095] font-poppins rounded-lg hover:bg-[#F16139] transition text-center"
+              className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base text-white border border-white bg-primary font-poppins rounded-lg hover:bg-[#F16139] transition text-center"
             >
               Contactar Servicios
             </Link>

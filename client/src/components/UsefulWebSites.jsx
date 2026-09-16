@@ -13,7 +13,7 @@ function UsefulWebSites() {
       className="py-4 px-4 text-center relative overflow-hidden"
       aria-label="Páginas de interés"
     >
-      <div className="bg-white p-4 rounded-xl shadow-2xl border-4 border-[#3E4095] relative z-10 max-w-6xl mx-auto">
+      <div className="bg-white p-4 rounded-xl shadow-2xl border-4 border-primary relative z-10 max-w-6xl mx-auto">
         <motion.section
           initial="hidden"
           whileInView="visible"

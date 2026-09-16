@@ -16,7 +16,7 @@ const ListTaxRegimen = ({ title, items = [] }) => {
       className="py-4 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden w-full"
       aria-labelledby={titleId}
     >
-      <div className="relative z-10 max-w-7xl mx-auto bg-white border-4 p-4 sm:p-6 lg:p-8 rounded-xl shadow-2xl border-[#3E4095]">
+      <div className="relative z-10 max-w-7xl mx-auto bg-white border-4 p-4 sm:p-6 lg:p-8 rounded-xl shadow-2xl border-primary">
         <TitlePrincipal
           id={titleId}
           title={title}

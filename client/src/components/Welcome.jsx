@@ -33,7 +33,7 @@ const Welcome = () => {
   return (
     <section aria-labelledby="bienvenida-title"
       className="px-4 py-4 text-center relative overflow-hidden min-h-[300px]">
-      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 shadow-2xl border-4 rounded-md border-[#3E4095]">
+      <div className="relative z-10 max-w-6xl mx-auto bg-white p-4 shadow-2xl border-4 rounded-md border-primary">
         {/* Título principal + icono */}
         <TitlePrincipal title="BIENVENIDOS" Icon={DoorOpen}/>
         {/* Subtítulo */}
@@ -59,7 +59,7 @@ const Welcome = () => {
             custom={1}
             className="p-14 min-h-[300px]"
           >
-            <h2 className="text-2xl font-semibold text-[#3E4095] mb-4">
+            <h2 className="text-2xl font-semibold text-primary mb-4">
               ¿QUIÉNES SOMOS?
             </h2>
             <p className="text-black font-poppins text-left text-lg leading-relaxed max-w-prose mx-auto box-shadow backdrop-filter">
@@ -72,7 +72,7 @@ const Welcome = () => {
           </motion.div>
 
           {/* Imagen */}
-          <div className="w-full max-w-[1000px] aspect-[16/9] mx-auto rounded-lg border-4 border-[#3E4095] shadow-lg overflow-hidden">
+          <div className="w-full max-w-[1000px] aspect-[16/9] mx-auto rounded-lg border-4 border-primary shadow-lg overflow-hidden">
             <motion.img
               src={img1}
               alt="..."
