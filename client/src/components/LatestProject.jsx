@@ -4,8 +4,8 @@ import TitlePrincipal from '../components/TitlePrincipal';
 import SectionCard from '../components/SectionCard';
 import { latestProject } from '../data/latestProject';
 
-// Sección "Últimos proyectos realizados" de la Home. Muestra UN solo proyecto:
-// el más reciente. NO enlaza a /proyectos (esa página se mantiene aparte).
+// Sección "Últimos proyectos realizados" (Home y Proyectos). Muestra UN solo
+// proyecto: el más reciente, con participantes y enlace a su sitio web.
 //
 // No reutiliza ProjectsRealize: ese componente no acepta props, tiene sus datos
 // incrustados y su forma es "lista de 8 bullets + columna decorativa de 4
@@ -19,11 +19,11 @@ export default function LatestProject() {
   return (
     <section
       className="py-4 px-4 text-center relative overflow-hidden"
-      aria-label="Últimos proyectos realizados"
+      aria-label="Proyecto reciente"
     >
       <SectionCard>
         <TitlePrincipal
-          title="ÚLTIMOS PROYECTOS REALIZADOS"
+          title="PROYECTO RECIENTE"
           Icon={BookmarkCheck}
           align="left"
         />
@@ -34,36 +34,73 @@ export default function LatestProject() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center px-2 text-left"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start px-2 text-left"
           >
-            {latestProject.image && (
-              <img
-                src={latestProject.image}
-                alt={latestProject.imageAlt || latestProject.title}
-                loading="lazy"
-                decoding="async"
-                width="1600"
-                height="900"
-                className="w-full h-auto rounded-xl border-4 border-primary shadow-2xl"
-              />
-            )}
+            <div className="flex flex-col items-center gap-4">
+              {latestProject.image && (
+                <img
+                  src={latestProject.image}
+                  alt={latestProject.imageAlt || latestProject.title}
+                  loading="lazy"
+                  decoding="async"
+                  width="916"
+                  height="611"
+                  className="w-full h-auto rounded-xl border-4 border-primary shadow-2xl"
+                />
+              )}
+
+              {latestProject.url && (
+                <a
+                  href={latestProject.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visitar el sitio web de ${latestProject.title} (abre en una pestaña nueva)`}
+                  className="px-6 py-3 text-white bg-primary font-poppins rounded-lg hover:bg-[#F16139] transition"
+                >
+                  Visitar sitio web
+                </a>
+              )}
+            </div>
 
             <div className="flex flex-col gap-3">
               <h3 className="font-poppins text-xl md:text-2xl font-semibold text-primary">
-                {latestProject.title}
+                {[latestProject.title, latestProject.date]
+                  .filter(Boolean)
+                  .join(' - ')}
               </h3>
 
-              {(latestProject.date || latestProject.location) && (
+              {latestProject.location && (
                 <p className="font-poppins text-sm text-gray-600">
-                  {[latestProject.date, latestProject.location]
-                    .filter(Boolean)
-                    .join(' · ')}
+                  {latestProject.location}
                 </p>
               )}
 
-              <p className="font-poppins text-base text-black leading-relaxed">
-                {latestProject.description}
-              </p>
+              {latestProject.description.map((paragraph) => (
+                <p
+                  key={paragraph}
+                  className="font-poppins text-base text-black leading-relaxed text-justify"
+                >
+                  {paragraph}
+                </p>
+              ))}
+
+              {latestProject.participants?.length > 0 && (
+                <div>
+                  <h4 className="font-poppins text-base font-semibold text-primary mb-2">
+                    Participantes y aliados
+                  </h4>
+                  <ul className="flex flex-col gap-2">
+                    {latestProject.participants.map((participant) => (
+                      <li key={participant} className="flex items-start gap-3">
+                        <BookmarkCheck className="text-primary mt-1 flex-shrink-0 w-5 h-5" />
+                        <span className="text-base font-poppins text-black">
+                          {participant}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </motion.article>
         ) : (

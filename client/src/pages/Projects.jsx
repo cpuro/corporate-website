@@ -1,4 +1,5 @@
 import ProjectsRealize from '../components/ProjectsRealize';
+import LatestProject from '../components/LatestProject';
 import projectsHeroBgImage from '../assets/images/projects-completed-1.webp';
 import SectionDivider from '../components/SectionDivider';
 import PdfViewer from '../components/PdfViewer';
@@ -18,6 +19,8 @@ const Projects = () => {
         isStatic={true}
       />
       </Suspense>
+      <SectionDivider />
+      <LatestProject />
       <SectionDivider />
       <ProjectsRealize />
       <SectionDivider />
