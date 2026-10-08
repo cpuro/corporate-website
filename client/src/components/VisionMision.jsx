@@ -88,7 +88,7 @@ export default function VisionMision() {
               title="MISIÓN"
               Icon={Rocket}
             />
-            <p className="section-text text-left">
+            <p className="font-poppins text-base md:text-lg text-black text-left md:text-justify">
               La Corporación Paso a Paso es una organización sin ánimo de lucro
               que tiene como misión la planeación, gestión y control de planes,
               programas y proyectos.
@@ -97,7 +97,7 @@ export default function VisionMision() {
 
           <div>
             <TitlePrincipal align="left" title="VISIÓN" Icon={Eye} />
-            <p className="section-text text-left">
+            <p className="font-poppins text-base md:text-lg text-black text-left md:text-justify">
               La Corporación Paso a Paso será una organización líder con
               reconocimiento por la calidad, cumplimiento y confiabilidad en sus
               servicios, contribuyendo al mejoramiento de la calidad de vida de

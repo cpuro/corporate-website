@@ -79,7 +79,7 @@ export default function ProjectsRealize() {
                   className="flex items-start gap-3"
                 >
                   <BookmarkCheck className="text-primary mt-1 flex-shrink-0 w-5 h-5" />
-                  <span className="text-base font-poppins">{item}</span>
+                  <span className="text-base font-poppins text-justify">{item}</span>
                 </motion.li>
               ))}
             </ul>

@@ -40,7 +40,7 @@
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-lg text-center text-black mb-12 max-w-3xl mx-auto font-poppins "
+            className="text-lg text-justify text-black mb-12 max-w-3xl mx-auto font-poppins "
           >
                       <span className="text-primary text-center jus align-middle font-semibold">CORPORACIÓN PASO A PASO</span>
                 <span className="text-black">
@@ -74,6 +74,24 @@
                   </Popup>
                 </Marker>
               </MapContainer>
+            </motion.div>
+
+            {/* Sedes */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-lg text-center text-black mb-8 max-w-3xl mx-auto font-poppins flex flex-col gap-2"
+            >
+              <p>
+                <span className="text-primary font-semibold">Domicilio principal:</span>{" "}
+                Carrera 55A No. 56-06, Barrio El Paraíso, Yondó, Antioquia
+              </p>
+              <p>
+                <span className="text-primary font-semibold">Punto de Gestión Institucional:</span>{" "}
+                Cra 31 #48-29, Barrancabermeja, Santander
+              </p>
             </motion.div>
 
             {/* Botón de contacto */}

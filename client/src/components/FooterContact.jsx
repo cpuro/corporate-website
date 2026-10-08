@@ -10,7 +10,10 @@ const FooterContact = () => {
         <PhoneIncoming className="text-[#F16139] w-4 h-4" /> 315 675 6556 - 312 403 6429
         </p>
         <p className="flex items-center justify-center sm:justify-start gap-2">
-        <MapPin className="text-[#F16139] w-4 h-4" /> Cra 31 #48-29, Barrancabermeja, Santander
+        <MapPin className="text-[#F16139] w-4 h-4 flex-shrink-0" /> Domicilio principal: Carrera 55A No. 56-06, Barrio El Paraíso, Yondó, Antioquia
+        </p>
+        <p className="flex items-center justify-center sm:justify-start gap-2">
+        <MapPin className="text-[#F16139] w-4 h-4 flex-shrink-0" /> Punto de Gestión Institucional: Cra 31 #48-29, Barrancabermeja, Santander
         </p>
         <p className="flex items-center justify-center sm:justify-start gap-2">
         <MailCheck className="text-[#F16139] w-4 h-4" />corpasoapaso@hotmail.com

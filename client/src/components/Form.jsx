@@ -42,7 +42,7 @@ const Form = () => {
 
         <TitlePrincipal title="CONTÁCTANOS" Icon={BookUser} />
 
-        <p className="text-black mt-4 mb-6 font-poppins text-base sm:text-lg text-center max-w-3xl mx-auto px-2">
+        <p className="text-black mt-4 mb-6 font-poppins text-base sm:text-lg text-justify max-w-3xl mx-auto px-2">
           ¿Tienes preguntas, necesitas más información o deseas contratar nuestros servicios?
           Rellena el siguiente formulario y nos pondremos en contacto contigo.
         </p>
