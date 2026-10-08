@@ -46,7 +46,7 @@ const AboutUs = () => {
         <InfoSection
           icon={UserPen}
           title={<>OBJETO SOCIAL</>}
-          text="La Corporación Paso a Paso, tiene como objeto social la planificación, gestión y control de planes, programas y proyectos, que contribuyan al mejoramiento de la calidad de vida de las comunidades."
+          text="La Corporación Paso a Paso tiene como objeto social la planificación, gestión y control de planes, programas y proyectos, que contribuyan al mejoramiento de la calidad de vida de las comunidades."
           images={[objectiveImage, organizationImage]}
         />
       </section>

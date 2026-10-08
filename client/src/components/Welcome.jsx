@@ -43,7 +43,7 @@ const Welcome = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.6 }}
           className="min-h-[80px] text-lg text-center text-black mb-12 max-w-3xl mx-auto font-poppins italic "
-        >¡Bienvenido a nuestra página! Aquí encontrarás información relevante sobre nuestro compromiso con Barrancabermeja y la región. ¡Explora y conoce nuestra historia!.
+        >¡Bienvenido a nuestra página! Aquí encontrarás información relevante sobre nuestro compromiso con Barrancabermeja y la región. ¡Explora y conoce nuestra historia!
         </motion.p>
 
         {/* Contenido texto + imagen */}
@@ -64,7 +64,7 @@ const Welcome = () => {
             </h2>
             <p className="text-black font-poppins text-left text-lg leading-relaxed max-w-prose mx-auto box-shadow backdrop-filter">
               
-                Somos una organización comprometida con el desarrollo social y económico,   
+                Somos una organización comprometida con el desarrollo social y económico.
                 Acompañamos a comunidades, entidades públicas y privadas en la planificación,
                 ejecución y seguimiento de sus planes, programas y proyectos.
               

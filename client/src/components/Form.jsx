@@ -133,7 +133,7 @@ const Form = () => {
               className="text-sm text-gray-700 text-left"
             >
               Autorizo libre y voluntariamente la recolección y uso de mis datos
-              personales. Consulte nuestro{' '}
+              personales. Consulta nuestro{' '}
               <a
                 href={DOCUMENT_URLS.privacyNotice}
                 download

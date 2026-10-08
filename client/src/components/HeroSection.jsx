@@ -11,9 +11,9 @@ import img4 from "../assets/images/hero-background-quaternary.webp";
 import img5 from "../assets/images/hero-background-tertiary.webp";
 
 const SLIDES = [
-  { image: img1, title: "CORPORACION PASO A PASO", link: "/nosotros" },
+  { image: img1, title: "CORPORACIÓN PASO A PASO", link: "/nosotros" },
   { image: img2, title: "SERVICIOS", link: "/servicios" },
-  { image: img3, title: "DOCUMENTACION LEGAL", link: "/regimen-tributario-especial" },
+  { image: img3, title: "DOCUMENTACIÓN LEGAL", link: "/regimen-tributario-especial" },
   { image: img4, title: "PROYECTOS", link: "/proyectos" },
   { image: img5, title: "CONTÁCTANOS", link: "/contacto" },
 ];
@@ -85,7 +85,7 @@ export default function HeroSection({
           <img
             key="lcp-image"
             src={img1}
-            alt="CORPORACION PASO A PASO"
+            alt="CORPORACIÓN PASO A PASO"
             width="1280"
             height="720"
             loading="eager"

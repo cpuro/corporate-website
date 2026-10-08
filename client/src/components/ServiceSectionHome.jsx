@@ -50,7 +50,7 @@ const Services = () => {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-lg text-center text-black mb-12 max-w-3xl mx-auto font-poppins italic "
         >
-         ¡Impulsamos el desarrollo territorial y sostenible a través de asesorías y consultorías técnicas y estratégicas en planes, programas y proyectos!.
+         ¡Impulsamos el desarrollo territorial y sostenible a través de asesorías y consultorías técnicas y estratégicas en planes, programas y proyectos!
         </motion.p>
 
         {/* Lista de servicios */}

@@ -52,7 +52,7 @@ function Footer() {
           © {new Date().getFullYear()} Corporación Paso a Paso.
         </small>
         <span className="block sm:inline font-semibold">
-          Desarrollado por: ING. Cristhian Andres Puello Rojas
+          Desarrollado por: Ing. Cristhian Andrés Puello Rojas
         </span>
       </div>
     </footer>

@@ -12,14 +12,14 @@ export const features = [
     ],
   },
       {
-    title: "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS PRODUCTIVOS Y  DE INVERSIÓN SOCIAL",
+    title: "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS PRODUCTIVOS Y DE INVERSIÓN SOCIAL",
     icon: "ClipboardCheck",
     points: [
       "Estudio de diagnóstico.",
       "Identificación de proyectos.",
       "Elaboración del perfil del proyecto.",
       "Formulación de estudios de prefactibilidad de proyectos (Estudio de mercados, estudio técnico, estudio administrativo/organizativo, estudio financiero, estudio ambiental).",
-      " Estudio de factibilidad.",
+      "Estudio de factibilidad.",
     ],
   },
               {
@@ -114,7 +114,7 @@ export const features = [
     icon: "UserCog",
     points: [
       "Diseño y facilitación de procesos participativos: Creación de espacios de diálogo e innovación con comunidades e instituciones.",
-      "Capacitaciones en Design Thinking y metodologías colaborativas:Talleres prácticos para equipos de trabajo, instituciones culturales y comunidades.",
+      "Capacitaciones en Design Thinking y metodologías colaborativas: Talleres prácticos para equipos de trabajo, instituciones culturales y comunidades.",
     ],
   },
 

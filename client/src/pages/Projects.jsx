@@ -14,7 +14,7 @@ const Projects = () => {
       <Suspense fallback={<div>Cargando sección...</div>}>
       <HeroSection
         customTitle="PROYECTOS REALIZADOS"
-        customSubtitle="Algunas de nuestras expericias..!"
+        customSubtitle="¡Algunas de nuestras experiencias!"
         customImage={projectsHeroBgImage}
         isStatic={true}
       />

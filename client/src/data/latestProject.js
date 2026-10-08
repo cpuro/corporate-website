@@ -26,7 +26,7 @@ export const latestProject = {
   ],
   date: '2026',
   location: 'Yondó (Antioquia) – Fondo DemocráTICa',
-  participants: ['Fondo DemocráTICa'],
+  participants: ['Comunidad campesina de Yondó'],
   url: 'https://mercado-campesino-digital.vercel.app/',
   image: latestProjectImage,
   imageAlt:

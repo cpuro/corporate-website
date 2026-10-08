@@ -87,7 +87,7 @@ export default function LatestProject() {
               {latestProject.participants?.length > 0 && (
                 <div>
                   <h4 className="font-poppins text-base font-semibold text-primary mb-2">
-                    Participantes y aliados
+                    Participantes
                   </h4>
                   <ul className="flex flex-col gap-2">
                     {latestProject.participants.map((participant) => (

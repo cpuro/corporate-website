@@ -8,7 +8,7 @@ const Form = lazy(() => import('../components/Form'));
 
 const Contact = () => {
   return (
-      <main aria-label="Documentación regímenes tributarios">
+      <main aria-label="Contacto con la Corporación Paso a Paso">
       <Suspense fallback={<div>Cargando sección...</div>}>
       <HeroSection
         customTitle="CONTÁCTANOS"

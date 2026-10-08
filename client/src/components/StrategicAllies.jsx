@@ -12,9 +12,9 @@ import logo_celsia from "/src/assets/icons/celsia.png";
 
 // Datos de las webs de interés
 const featuresData = [
-  { title: "Alcaldia de Yondo", link: "https://www.yondo-antioquia.gov.co/", icon: logo_alcaldia_yondo },
-  { title: "Alcaldia de San Pablo", link: "http://www.sanpablo-bolivar.gov.co/", icon: logo_alcaldia_san_pablo },
-  { title: "Fundacion Bolivar Davivienda ", link: "https://www.fundacionbolivardavivienda.org/", icon: logo_fundacion_bolivar_davivienda },
+  { title: "Alcaldía de Yondó", link: "https://www.yondo-antioquia.gov.co/", icon: logo_alcaldia_yondo },
+  { title: "Alcaldía de San Pablo", link: "http://www.sanpablo-bolivar.gov.co/", icon: logo_alcaldia_san_pablo },
+  { title: "Fundación Bolívar Davivienda", link: "https://www.fundacionbolivardavivienda.org/", icon: logo_fundacion_bolivar_davivienda },
   { title: "Celsia", link: "https://www.celsia.com/es/", icon: logo_celsia },
 
 ];
@@ -57,7 +57,7 @@ function StrategicAllies() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-lg text-center text-black mb-12 max-w-3xl mx-auto font-poppins italic "
         >
-        ¡Estas son algunas de las instituciones que han confiado en nuestro trabajo técnico y social en el territorio!.
+        ¡Estas son algunas de las instituciones que han confiado en nuestro trabajo técnico y social en el territorio!
         </motion.p>
 
 

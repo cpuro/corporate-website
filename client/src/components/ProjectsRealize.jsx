@@ -36,13 +36,13 @@ const imageVariants = {
 };
 
 const proyectsRealized = [
-  'Asesoría técnica en la formulación del Plan de Desarrollo del municipio de San Pablo -Bolívar 2024-2027.',
-  'Consultoría para la formulación e implementación del proyecto “Vibremos En Comuna”, bajo el programa de apoyo a la capacidad organizativa y comunitaria del plan de manejo ambiental de la Central Térmica Meriléctrica de Barrancabermeja Celsia S.A, para fortalecer la capacidad organizativa y de autogestión de las Organizaciones Sociales y Juntas de Acción Comunal del área de influencia directa.',
+  'Asesoría técnica en la formulación del Plan de Desarrollo del municipio de San Pablo (Bolívar) 2024-2027.',
+  'Consultoría para la formulación e implementación del proyecto “Vibremos En Comuna”, bajo el programa de apoyo a la capacidad organizativa y comunitaria del plan de manejo ambiental de la Central Térmica Meriléctrica de Barrancabermeja Celsia S.A., para fortalecer la capacidad organizativa y de autogestión de las Organizaciones Sociales y Juntas de Acción Comunal del área de influencia directa.',
   'Fortalecimiento de capacidades en comunidades vulnerables ubicadas cerca de la Ciénaga San Silvestre en Barrancabermeja, dentro del marco de la construcción de un Proyecto Ciudadano de Educación Ambiental (PROCEDA).',
   'Asesoría y acompañamiento metodológico para la formulación del plan de desarrollo vigencia 2016-2019 del Municipio de Yondó.',
-  'Actualización del plan de desarrollo turístico del Municipio de Yondó-Antioquia – vigencia 2015.',
+  'Actualización del plan de desarrollo turístico del Municipio de Yondó (Antioquia) – vigencia 2015.',
   'Diagnóstico de problemáticas y deficiencias ambientales y capacitación en cultura ciudadana en los barrios del Área de Influencia de la central térmica Meriléctrica – Celsia Barrancabermeja.',
-  'Estudio de impacto de la gestión social de la planta Meriléctrica, en su zona de influencia - Barrancabermeja',
+  'Estudio de impacto de la gestión social de la planta Meriléctrica, en su zona de influencia - Barrancabermeja.',
   'Desarrollo de proyectos de la cadena agroalimentaria y de los sectores internacionalización, productividad y competitividad del eje económico del plan de desarrollo de Yondó (Antioquia) vigencia 2008-2011.',
 ];
 
